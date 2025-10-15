@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
-public class Y2KFullScreen : MonoBehaviour
+public class Y2KCulling : MonoBehaviour
 {
     [Range(0,1)] public float scanIntensity = 0.5f;
     [Range(1,20)] public float pixelate = 8f;

@@ -10,7 +10,9 @@ public class DirectorManager : MonoBehaviour
 {
     private static DirectorManager _instance;
     public static DirectorManager GetInstance() => _instance; 
+    
     private PlayableDirector director;
+    
     [DllImport("user32.dll")] static extern short GetAsyncKeyState(int vKey);
     private const int VK_LBUTTON = 0x01;   // 左键
     private const int VK_RBUTTON = 0x02;   // 右键

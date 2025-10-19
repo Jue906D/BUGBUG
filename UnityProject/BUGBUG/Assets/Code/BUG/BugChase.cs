@@ -1,10 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Code.UI;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Playables;
 
 [RequireComponent(typeof(RectTransform))]
 public class BugChase : MonoBehaviour
 {
     [Header("动画对象")]public GameObject AnimObject;
+    [Header("名字对象")]public GameObject TextObject;
     [Header("延迟开始（秒）")] public float startDelay = 1.8f;
 
     [Header("最大速度（像素/秒）")] public float maxSpeed = 400f;
@@ -14,6 +17,14 @@ public class BugChase : MonoBehaviour
     [Header("旋转缓动曲线")] public AnimationCurve rotateCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [Header("最大旋转速度（度/秒）")] public float maxRotateSpeed = 720f;
 
+    [Header("点击显示内容")] 
+    [SerializeField]
+    public DialogInfo info;
+
+    [Header("当前虫名")]
+    [SerializeField]
+    public string BugName = "DefaultBug";
+    
     //运动相关
     private RectTransform rectTrans;
     private RectTransform rotateTrans;
@@ -25,17 +36,30 @@ public class BugChase : MonoBehaviour
     private float currentAngle;          // 当前欧拉角（z）
     private bool wasMoving = true;       // 上一帧是否在移动
     private Animator animator;
+    private TextMeshProUGUI nameTMP;
 
     void Awake()
     {
         rectTrans = GetComponent<RectTransform>();
         rotateTrans = AnimObject.GetComponent<RectTransform>();
         animator = AnimObject.GetComponent<Animator>();
+        nameTMP = TextObject.GetComponent<TextMeshProUGUI>();
     }
 
     void Start()
     {
         startTime = Time.time + startDelay;
+        nameTMP.text = BugName;
+    }
+
+    public void ChangeName()
+    {
+        if (BugName != nameTMP.text)
+        {
+            BugName = nameTMP.text;
+            DialogBox.Show(new DialogInfo($"新名字：{BugName}"));
+        }
+            
     }
 
     void Update()
@@ -94,6 +118,13 @@ public class BugChase : MonoBehaviour
             animator.SetFloat("Speed",0);
             animator.SetBool("Moving", false);
         }
+        
             
+    }
+
+    public void OnClickSetBox()
+    {
+        //DialogBox.Show(new DialogInfo($"咦？{BugName}的样子……"));
+        DialogBox.ShowNoDupicated(new DialogInfo("这是什么东西？桌宠？"));
     }
 }

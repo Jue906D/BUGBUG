@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6052400140233772725}
   - component: {fileID: 5046563471325905956}
   - component: {fileID: 7243809049191602928}
+  - component: {fileID: 3678594906745081845}
+  - component: {fileID: 2708497605957702690}
   m_Layer: 5
   m_Name: itemTips
   m_TagString: Untagged
@@ -118,6 +120,34 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &3678594906745081845
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989507520483211925}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2708497605957702690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989507520483211925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df2b9f6afb14a32ad6bfd0b95d08d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: {fileID: 0}
+  contentText: {fileID: 6522011660409448953}
+  fadeDuration: 0.3
+  displayTime: 3
 --- !u!1 &7795657157074199460
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 227.005, y: -40}
+  m_AnchoredPosition: {x: 20, y: -40}
   m_SizeDelta: {x: 414.01, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3295597708303788087

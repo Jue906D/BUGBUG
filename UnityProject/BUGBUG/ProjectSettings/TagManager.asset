@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - TrailCam
   - Water
   - UI
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Down
+    uniqueID: 4087068227
+    locked: 0
+  - name: MidGO
+    uniqueID: 2451013625
+    locked: 0
+  - name: Overlay
+    uniqueID: 1076211373
     locked: 0

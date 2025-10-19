@@ -1,5 +1,7 @@
-﻿using Code.UI;
+﻿using System;
+using Code.UI;
 using Code.Utils;
+using TMPro;
 using UnityEngine;
 
 namespace Code.Data
@@ -14,6 +16,8 @@ namespace Code.Data
         public float TimeBorder = 60; 
         public float DeathBorder = 60; 
 
+        [SerializeField]
+        private TextMeshProUGUI TimerText;
         
         public bool Y2KStage;
         public bool Y2KTip;
@@ -26,8 +30,9 @@ namespace Code.Data
         void Update()
         {
             RealTimePassed += Time.deltaTime;
-            DateTimeCur.AddSeconds(Time.deltaTime);
-
+            DateTimeCur = DateTimeCur.AddSeconds(Time.deltaTime);
+            TimerText.text = DateTimeCur.ToString("yy-MM-dd HH:mm:ss");
+            
             if (RealTimePassed > TimeBorder &&!Y2KStage)
             {
                 BugChase.Instance.ToY2K();

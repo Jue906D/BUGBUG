@@ -1,4 +1,5 @@
-﻿using Code.Data;
+﻿using Code.BUG;
+using Code.Data;
 using Code.UI;
 using Code.Utils;
 using TMPro;
@@ -29,6 +30,8 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
     public string BugName = "DefaultBug";
     
     public Button bugButton;
+
+    [SerializeField] public Camera uiCam;
     
     //anim
     [SerializeField]
@@ -54,6 +57,14 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
     private TextMeshProUGUI nameTMP;
     private TMP_InputField inputField;
 
+    [Header("贴边爬行")]
+    public float edgeSpeed = 300f;          // 沿边速度（像素/s）
+    public bool  clockwise = true;          //  true=顺时针  false=逆时针
+    private bool onEdge = false;            // 是否正在贴边
+    private int  edgeDir;                   // 当前在哪条边 0左 1上 2右 3下
+    private Vector2 edgeTangent;            // 切线方向（已归一化）
+    
+    
     void Awake()
     {
         rectTrans = GetComponent<RectTransform>();
@@ -89,13 +100,51 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTrans.parent as RectTransform,
             Input.mousePosition,
-            null,
+            uiCam,
             out targetPos);
 
         Vector2 currentPos = rectTrans.anchoredPosition;
         float dist = Vector2.Distance(currentPos, targetPos);
         bool moving = dist > stopDist;
  
+        
+        
+        /*/* ===== 贴边爬行独立管道 ===== #1#
+        if (onEdge)
+        {
+            // 一直沿切线走
+            Vector2 next = rectTrans.anchoredPosition + edgeTangent * (maxSpeed * Time.deltaTime);
+
+            // 走到角落后自动拐到下一个边
+            RectTransform prt = rectTrans.parent as RectTransform;
+            Vector2 half = prt.sizeDelta * 0.5f;
+            bool turn = false;
+            switch (edgeDir)
+            {
+                case 0: if (next.y >= half.y)  { edgeDir = 1; turn = true; } else if (next.y <= -half.y) { edgeDir = 3; turn = true; } break;
+                case 1: if (next.x >= half.x)  { edgeDir = 2; turn = true; } else if (next.x <= -half.x) { edgeDir = 0; turn = true; } break;
+                case 2: if (next.y <= -half.y) { edgeDir = 3; turn = true; } else if (next.y >= half.y)  { edgeDir = 1; turn = true; } break;
+                case 3: if (next.x <= -half.x) { edgeDir = 0; turn = true; } else if (next.x >= half.x)  { edgeDir = 2; turn = true; } break;
+            }
+            if (turn)
+                edgeTangent = clockwise ? new Vector2(-edgeTangent.y, edgeTangent.x)
+                    : new Vector2(edgeTangent.y, -edgeTangent.x);
+
+            rectTrans.anchoredPosition = next;
+
+            // 旋转：让头部朝切线方向
+            float tgtAngle = Vector2.SignedAngle(Vector2.up, edgeTangent);
+            currentAngle = Mathf.MoveTowardsAngle(currentAngle, tgtAngle, maxRotateSpeed * Time.deltaTime);
+            rotateTrans.localRotation = Quaternion.Euler(0, 0, currentAngle);
+
+            animator.SetBool("Moving", true);
+            animator.SetFloat("Speed", 1f);
+            return;   // 贴边期间不走原始逻辑
+        }*/
+        
+        
+        
+        
         // mov
         if (moving && !Timer.Instance.Death)
         {
@@ -147,7 +196,43 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
         }
             
     }
+    
+    /*void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!col.TryGetComponent(out BorderLine _)) return;   // 只认边界
+        if (onEdge) return;                                   // 已经在贴边就不管
 
+        // 计算当前在哪条边
+        RectTransform parentRT = rectTrans.parent as RectTransform;
+        Vector2 p = rectTrans.anchoredPosition;
+        Vector2 half = parentRT.sizeDelta * 0.5f;
+        float dx = half.x - Mathf.Abs(p.x);
+        float dy = half.y - Mathf.Abs(p.y);
+
+        if (dx < dy)            // 左右边
+        {
+            edgeDir = p.x < 0 ? 0 : 2;
+            edgeTangent = clockwise ? Vector2.up : Vector2.down;
+        }
+        else                    // 上下边
+        {
+            edgeDir = p.y > 0 ? 1 : 3;
+            edgeTangent = clockwise ? Vector2.right : Vector2.left;
+        }
+
+        onEdge = true;
+        animator.SetFloat("Edge", 1f);      // 切到贴边动画
+    }*/
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (!col.TryGetComponent(out BorderLine _)) return;
+        onEdge = false;
+        animator.SetFloat("Edge", 0f);      // 回到飞行动画
+    }
+
+    
+    
     public void OnClickSetBox()
     {
         //DialogBox.Show(new DialogInfo($"咦？{BugName}的样子……"));

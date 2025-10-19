@@ -18,8 +18,9 @@ public class Bug : MonoBehaviour
 
     public void ChangeWindowState(bool setPet = true)
     {
+        Debug.Log(setPet + "ChangeWindowState");
 #if !UNITY_EDITOR
-        Debug.Log(setPet);
+        
         WinTrans.Instance.transparent = setPet;
         WinTrans.Instance.clickThrough = setPet;
         WinTrans.Instance.glass = setPet;

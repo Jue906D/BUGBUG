@@ -383,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -21.4}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &95752949
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: '{PetNameDefault}'
+  m_Text: BUGBUG
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95752947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2912,7 +2912,7 @@ MonoBehaviour:
   AnimObject: {fileID: 118505635}
   TextObject: {fileID: 1498115457}
   startDelay: 1.8
-  maxSpeed: 80
+  maxSpeed: 400
   stopDist: 160
   speedCurve:
     serializedVersion: 2
@@ -3194,7 +3194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "{PetNameDefault}\u200B"
+  m_text: "BUGBUG\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acb73551162e3664195ec8de4bc771e4, type: 2}
   m_sharedMaterial: {fileID: 1893203697795474223, guid: acb73551162e3664195ec8de4bc771e4, type: 2}
@@ -3415,7 +3415,7 @@ RectTransform:
   - {fileID: 898940601}
   - {fileID: 1036094625}
   m_Father: {fileID: 515209565}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.224}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3532,7 +3532,7 @@ MonoBehaviour:
   logFileNameRaw: '{petname}.log.md'
   targetPath: 
   isCopied: 0
-  fixedStamp: 1975-1-1 0h02m00
+  fixedStamp: 75-1-1 0h02m00
   isFinished: 0
   EndStage: {fileID: 1089665083}
 --- !u!1 &1684216681
@@ -3613,7 +3613,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acb73551162e3664195ec8de4bc771e4, type: 2}
   m_sharedMaterial: {fileID: 1893203697795474223, guid: acb73551162e3664195ec8de4bc771e4, type: 2}

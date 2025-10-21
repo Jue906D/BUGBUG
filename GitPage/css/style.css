@@ -13,6 +13,13 @@
      opacity: 1;
  }
 /*** Spinner End ***/
+body {
+    overflow-y: auto;
+  }
+html {
+    overflow-y: auto;
+    zoom: 0.8;
+  }
 
 .back-to-top {
     position: fixed;

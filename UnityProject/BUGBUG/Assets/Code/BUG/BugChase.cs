@@ -57,13 +57,23 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
     private TextMeshProUGUI nameTMP;
     private TMP_InputField inputField;
 
-    [Header("贴边爬行")]
-    public float edgeSpeed = 300f;          // 沿边速度（像素/s）
+    [Header("贴边爬行 未完成")]
+    public float edgeSpeed = 300f;          // 沿边速度
     public bool  clockwise = true;          //  true=顺时针  false=逆时针
     private bool onEdge = false;            // 是否正在贴边
     private int  edgeDir;                   // 当前在哪条边 0左 1上 2右 3下
-    private Vector2 edgeTangent;            // 切线方向（已归一化）
+    private Vector2 edgeTangent;            // 切线方向
+
+    private float dist;
     
+    [Header("虫子爬行模拟")]
+    public bool  randomCrawl = true;        // 开关虫子模式
+    public float nextTargetDist = 10f;      // 到达目标后重新随机（像素）
+    public float idleChance = 0.25f;        // 概率呆滞、时长
+    public float idleTimeMin = 0.2f;
+    public float idleTimeMax = 0.8f;
+
+    private float idleEndTime = 0f;         // 发呆结束时间
     
     void Awake()
     {
@@ -72,6 +82,7 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
         animator = AnimObject.GetComponent<Animator>();
         nameTMP = TextObject.GetComponent<TextMeshProUGUI>();
         inputField = GetComponentInChildren<TMP_InputField>();
+        idleEndTime = Time.time + idleTimeMin;
     }
 
     void Start()
@@ -90,6 +101,21 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
             
     }
 
+    void RandomNextTarget()
+    {
+        Vector2 half = new Vector2(1920 / 2, 1080 / 2);
+
+        // 随机点（留 30 像素边距）
+        float rx = Random.Range(-half.x + 30f, half.x - 30f);
+        float ry = Random.Range(-half.y + 30f, half.y - 30f);
+        targetPos = new Vector2(rx, ry);
+
+        // 随机发呆
+        if (Random.value < idleChance)
+            idleEndTime = Time.time + Random.Range(idleTimeMin, idleTimeMax);
+    }
+    
+    
     void Update()
     {
         // 1. 延迟阶段
@@ -97,17 +123,29 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
             started = true;
         if (!started) return;
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rectTrans.parent as RectTransform,
-            Input.mousePosition,
-            uiCam,
-            out targetPos);
-
-        Vector2 currentPos = rectTrans.anchoredPosition;
-        float dist = Vector2.Distance(currentPos, targetPos);
-        bool moving = dist > stopDist;
- 
         
+        Vector2 currentPos = rectTrans.anchoredPosition;
+        dist = Vector2.Distance(currentPos, targetPos);
+        // ===== 1. 随机爬行模式 =====
+        if (randomCrawl)
+        {
+            if (Time.time < idleEndTime)      // 发呆中
+                return;
+
+            
+            if (dist <= nextTargetDist)       // 到达 or 第一次
+                RandomNextTarget();
+        }
+        else
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                rectTrans.parent as RectTransform,
+                Input.mousePosition,
+                uiCam,
+                out targetPos);
+        }
+        
+        bool moving = dist > stopDist;
         
         /*/* ===== 贴边爬行独立管道 ===== #1#
         if (onEdge)

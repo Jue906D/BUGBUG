@@ -10,7 +10,7 @@ public class UwcWindowTextureChildrenManager : MonoBehaviour
     UwcWindowTexture windowTexture_;
     Dictionary<int, UwcWindowTexture> children_ = new Dictionary<int, UwcWindowTexture>();
 
-    void Awake()
+    void Awake() 
     {
         windowTexture_ = GetComponent<UwcWindowTexture>();
         windowTexture_.onWindowChanged.AddListener(OnWindowChanged);

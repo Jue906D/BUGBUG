@@ -170,12 +170,27 @@
                   matches.forEach(news => {
                     const item = document.createElement('div');
                     item.className = 'col-12 d-flex justify-content-between align-items-center mb-2';
-                    item.innerHTML = `
-                      <a href="${news.url}" 
-                         class="text-primary text-decoration-underline"
+                      // === 新增：主标题链接 ===
+                    const link = `
+                      <a href="${news.url}" class="text-primary text-decoration-underline"
                          style="font-size: 25px; line-height: 1.5;">${news.title}</a>
-                      <small class="text-muted ms-auto" style="font-size: 16px;">${news.date}</small>
                     `;
+
+                    // === 新增：隐藏字 secret ===
+                    const secret = news.secret
+                      ? `<span style="color: transparent; user-select: text; text-decoration: none; font-size: 25px; line-height: 1.5;">${news.secret}</span>`
+                      : '';
+
+                    // === 修改：标签 tag，与主页保持一致 ===
+                    const tag = news.tag
+                      ? `<span class="text-danger ms-2" style="font-size: 20px;">${news.tag}</span>`
+                      : '';
+
+                    // === 新增：日期 ===
+                    const date = `<small class="text-muted ms-auto" style="font-size: 16px;">${news.date}</small>`;
+
+                    // === 修改：完整组合顺序（标题 → secret → tag → 日期） ===
+                    item.innerHTML = link + secret + tag + date;
                     resultsContainer.appendChild(item);
                   });
                 } else {

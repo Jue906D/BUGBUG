@@ -1,17 +1,26 @@
-
+// === 新闻数据 ===
 const newsList = [
-  { title: "世纪之交的危机——千年虫", url: "route01post00.html", date: "1999-12-09" },
+  { title: "世纪之交的危机——千年虫", url: "route01post00.html", tag: "火", date: "1999-12-09" },
   { title: "张千年：有信心击退“千年虫”", url: "route01post01.html", date: "1999-12-08" },
-  { title: "张千年先生逝世：享年38岁", url: "route01post02.html", date: "1999-12-07" },
-  { title: "不明飞行物现象", url: "404.html", date: "1999-12-10" },
-  { title: "成龙'绯闻'事件", url: "route01post02.html", date: "1999-11-19" },
+  { title: "张千年先生逝世：享年38岁", url: "route01post02.html", tag: "热", date: "1999-12-07" },
+  { title: "不明飞行物现象", url: "route01post01.html", date: "1999-12-10" },
+  { title: "成龙\"绯闻\"事件", url: "route01post02.html", tag: "热", date: "1999-11-19" },
   { title: "登陆火星", url: "404.html", date: "1999-12-14" },
   { title: "第三届国际足联女子世界杯", url: "404.html", date: "1999-6-18" },
-  { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "404.html", date: "1997-5-6" },
+  { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "404.html", secret: "秘密字", tag: "火", date: "1997-5-6" },
   { title: "张千年教授的电脑课堂-揭秘时间戳", url: "route01post03.html", date: "1999-07-19" },
-  { title: "“千年虫”卷土重来？揭秘2038年虫", url: "404.html", date: "2038-10-14" },
-  { title: "“万年虫”再度示警，专家称：祸害遗万年", url: "404.html", date: "11451-17-36" },
-  { title: "最后一周，千万奖金，等你来拿！", url: "404.html", date: "1999-12-18" },
+  { title: "《关于对全部电子设备实施年度集中销毁的公示》", url: "404.html", secret: "秘密字", tag: "火", date: "****-**-**" },
+  { title: "江主席出访亚太三国", url: "404.html", date: "1999-09-03" },
+  { title: "女子足球队获亚军，惜败美国队", url: "404.html", date: "1999-7-10" },
+  { title: "\"千年虫\"卷土重来？揭秘2038年虫", url: "404.html", secret: "秘密字", tag: "火", date: "2038-10-14" },
+  { title: "七十二小时网络生存测试", url: "404.html", date: "1999-09-04" },
+  { title: "世纪末的日全食", url: "404.html", date: "1999-08-09" },
+  { title: "台湾大地震", url: "404.html", date: "1999-09-21" },
+  { title: "\"万年虫\"再度示警，专家称：祸害遗万年", url: "404.html", secret: "秘密字", tag: "火", date: "11451-17-36" },
+  { title: "我国发射载人航天飞船", url: "404.html", date: "1999-11-21" },
+  { title: "新世纪的首次挑战：2025年虫", url: "404.html", secret: "秘密字", tag: "火", date: "2024-7-29" },
+  { title: "最后一周，千万奖金，等你来拿！", url: "404.html", tag: "热", date: "1999-12-18" },
   { title: "火星上可能存在智慧生命", url: "404.html", date: "1999-12-18" },
-  { title: "震惊！竟然使用地沟油！", url: "404.html", date: "1999-12-18" }
+  { title: "大米竟由塑料制！食品安全监管难？", url: "404.html", tag: "热", date: "1999-12-18" },
+  { title: "震惊！竟然使用地沟油！", url: "404.html", tag: "热", date: "1999-12-18" }
 ];

@@ -167,20 +167,24 @@
               );
 
               if (matches.length > 0) {
-                matches.forEach(news => {
-                  const link = document.createElement('a');
-                  link.href = news.url;
-                  link.className = 'list-group-item list-group-item-action';
-                  link.innerHTML = `<strong>${news.title}</strong> <small class="text-muted float-end">${news.date}</small>`;
-                  resultsContainer.appendChild(link);
-                });
+                  matches.forEach(news => {
+                    const item = document.createElement('div');
+                    item.className = 'col-12 d-flex justify-content-between align-items-center mb-2';
+                    item.innerHTML = `
+                      <a href="${news.url}" 
+                         class="text-primary text-decoration-underline"
+                         style="font-size: 25px; line-height: 1.5;">${news.title}</a>
+                      <small class="text-muted ms-auto" style="font-size: 16px;">${news.date}</small>
+                    `;
+                    resultsContainer.appendChild(item);
+                  });
+                } else {
+                  noResults.style.display = 'block';
+                }
               } else {
+                noResults.textContent = "未输入关键词。";
                 noResults.style.display = 'block';
               }
-            } else {
-              noResults.textContent = "未输入关键词。";
-              noResults.style.display = 'block';
-            }
           </script>
 
         <!-- JavaScript Libraries -->

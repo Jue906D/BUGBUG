@@ -236,19 +236,7 @@
 
         <!-- bottom Section End -->
 
-        <!-- search Section -->
-        <script>
-          const searchInput = document.querySelector('input[placeholder="……"]');
-          const searchButton = document.querySelector('img[alt="search"]');
 
-          searchButton.addEventListener('click', function() {
-            const keyword = searchInput.value.trim();
-            if (!keyword) return;
-
-            // 将搜索词跳转到 search.html
-            window.location.href = `search.html?keyword=${encodeURIComponent(keyword)}`;
-          });
-        </script>
         
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

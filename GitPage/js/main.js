@@ -21,6 +21,20 @@
         }
     });
     
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.querySelector('input[placeholder="……"]');
+        const searchButton = document.querySelector('img[alt="search"]');
+      
+        if (!searchInput || !searchButton) return;
+      
+        searchButton.addEventListener('click', function() {
+          const keyword = searchInput.value.trim();
+          if (!keyword) return;
+      
+          window.location.href = `search.html?keyword=${encodeURIComponent(keyword)}`;
+        });
+      });
+      
     
    // Back to top button
    $(window).scroll(function () {

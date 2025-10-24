@@ -27,13 +27,13 @@
 
 
 const newsList = [
-  { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "route01post08.html", secret: "乾", tag: "火", date: "1997-05-06" },
+  { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "route01post08.html", secret: "巽", tag: "火", date: "1997-05-06" },
   { title: "第三届国际足联女子世界杯", url: "404.html", date: "1999-06-18" },
   { title: "张千年教授的电脑课堂-揭秘时间戳", url: "route01post03.html", secret: "坎", tag: "热", date: "1999-07-19" },
   { title: "女子足球队获亚军，惜败美国队", url: "404.html", date: "1999-07-10" },
   { title: "世纪末的日全食", url: "404.html", date: "1999-08-09" },
   { title: "七十二小时网络生存测试", url: "404.html", date: "1999-09-04" },
-  { title: "牢记初心，不忘梦想——“中国图灵”张千年教授专访", url: "route01post09.html", secret: "巽", tag: "火", date: "1999-09-21" },
+  { title: "牢记初心，不忘梦想——“中国图灵”张千年教授专访", url: "route01post09.html", secret: "乾", tag: "火", date: "1999-09-21" },
   { title: "我国发射载人航天飞船", url: "404.html", date: "1999-11-21" },
   { title: "张千年：有信心击退“千年虫”", url: "route01post01.html", secret: "艮", tag: "热", date: "1999-12-05" }, 
   { title: "张千年先生逝世：享年38岁", url: "route01post02.html", secret: "坤", tag: "热",date: "1999-12-07" },

@@ -96,13 +96,13 @@
 
             // 1️⃣ 检查用户名
             if (!username || username !== CORRECT_USERNAME) {
-              loginMessage.textContent = "用户不存在";
+              loginMessage.textContent = "用户不存在，预设值admin";
               return;
             }
 
             // 2️⃣ 检查密码
             if (!password || password !== CORRECT_PASSWORD) {
-              loginMessage.textContent = "密码错误";
+              loginMessage.textContent = "密码错误，预设值123456";
               return;
             }
 

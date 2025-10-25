@@ -1,6 +1,6 @@
 \*\*\* APPLICATION ERROR LOG \*\*\*
 
-Timestamp: 1999-12-31 25:17:43
+Timestamp:00-01-01 25:17:43
 
 System: Windows ME Build 4.90.3000
 
@@ -94,5 +94,5 @@ Common causes include:
 
 &nbsp; 
 
-Timestamp: 1999-12-31 25:17:43
+Timestamp: 00-01-01 25:17:43
 

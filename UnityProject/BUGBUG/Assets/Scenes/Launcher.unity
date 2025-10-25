@@ -731,9 +731,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1139178703}
-  interval: 15
+  interval: 45
   maxPoint: 200
   lineThickness: 55
+  baseThickness: 18
+  chewAmplitude: 4
+  chewFreq: 0.3
+  chewMask: {fileID: 0}
 --- !u!114 &258698680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,14 +751,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_improveResolution: 0
   m_Resolution: 0
   m_useNativeSize: 0

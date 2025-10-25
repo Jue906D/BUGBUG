@@ -44,16 +44,6 @@ public class UIBrusher : MonoBehaviour
         float thick = baseThickness + Mathf.PerlinNoise(t, 0) * chewAmplitude;
         lr.LineThickness = thick;
         
-
-        // 3. 顶点子像素抖动（永远对不齐像素网格）
-        Vector2[] pts = lr.Points;
-        for (int i = 0; i < pts.Length; i++)
-            pts[i] += new Vector2(
-                (Mathf.PerlinNoise(i * 0.5f, t) - 0.5f) * 0.8f,
-                (Mathf.PerlinNoise(i * 0.5f + 100, t) - 0.5f) * 0.8f);
-        lr.Points = pts;
-        
-        
         Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, target.position);
         Vector2 localPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(maskRT, screenPos, null, out localPos);

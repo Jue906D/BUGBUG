@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.60784316}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3687,6 +3687,7 @@ MonoBehaviour:
   idleChance: 0.25
   idleTimeMin: 0.2
   idleTimeMax: 0.8
+  edgeBuffer: 30
 --- !u!1 &1220586399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,7 +4621,7 @@ MonoBehaviour:
   logFileNameRaw: '{petname}.log.md'
   targetPath: 
   isCopied: 0
-  fixedStamp: 1975-1-1 0h02m00
+  fixedStamp: 75-01-01
   fixedStamp2: suspend(Time)
   isFinished: 0
   hasSetTime: 0

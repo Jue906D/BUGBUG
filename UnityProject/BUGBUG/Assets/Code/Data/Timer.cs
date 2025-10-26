@@ -52,7 +52,7 @@ namespace Code.Data
             {
                 Death = true;
                 DeathTime = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");
-                WinTrans.Instance.TopMost();
+                //WinTrans.Instance.TopMost();
                 BugChase.Instance.Death();
                 Death = true;
             }

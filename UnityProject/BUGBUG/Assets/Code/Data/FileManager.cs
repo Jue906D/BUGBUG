@@ -105,7 +105,7 @@ namespace Code.Data
             if (TryParseTargetLine(out DateTime parsedTime))
             {
                 Debug.Log($"[FileTimeWatcher] 修改正确，完成时间：{parsedTime:HH:mm:ss}");
-                WinTrans.Instance.TopMost();
+                //WinTrans.Instance.TopMost();
                 DialogBox.Show(new DialogInfo("是这样吗？"));
                 BugChase.Instance.AnimObject.SetBool("Death" , true);
                 isFinished = true;
@@ -150,11 +150,11 @@ namespace Code.Data
 
                         var foundStamp = line.Substring(start, end - start+1);
                         Debug.Log($"已更新: {foundStamp}");
-                        if (foundStamp.Equals(fixedStamp)) // 完全相等即成功
+                        if (foundStamp.IndexOf(fixedStamp, StringComparison.Ordinal) >= 0) // 完全相等即成功
                         {
                             EndNum = 1;
                             return true;
-                        }else if (foundStamp.Equals(fixedStamp2))
+                        }else if (foundStamp.IndexOf(fixedStamp2, StringComparison.Ordinal) >= 0)
                         {
                             EndNum = 2;
                             return true;

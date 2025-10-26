@@ -74,7 +74,9 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
     public float idleTimeMax = 0.8f;
 
     private float idleEndTime = 0f;         // 发呆结束时间
-    
+    [Header("边缘停止")]
+    [SerializeField]
+    public float edgeBuffer = 30f;
     void Awake()
     {
         rectTrans = GetComponent<RectTransform>();
@@ -147,6 +149,41 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
         }
         
         bool moving = dist > stopDist;
+        
+        
+        
+        Rect parentRect = (rectTrans.parent as RectTransform).rect;
+        Vector2 localPos = rectTrans.anchoredPosition;
+        float halfW = parentRect.width  * 0.5f;
+        float halfH = parentRect.height * 0.5f;
+        // 计算各方向“离边缘距离”
+        float leftGap  = localPos.x + halfW;
+        float rightGap = halfW - localPos.x;
+        float topGap   = localPos.y + halfH;
+        float bottomGap= halfH - localPos.y;
+
+        // 预测下一步位置（粗略）
+        Vector2 nextPos = localPos + (targetPos - localPos).normalized *
+            speedCurve.Evaluate(dist / (stopDist + maxSpeed * 0.5f)) * maxSpeed * Time.deltaTime;
+        if (localPos.x <= -halfW + edgeBuffer ||
+            localPos.x >=  halfW - edgeBuffer ||
+            localPos.y <= -halfH + edgeBuffer ||
+            localPos.y >=  halfH - edgeBuffer)
+        {
+            moving = false;   // 强制停止
+            if (nextPos.x < localPos.x && leftGap  <= edgeBuffer ||
+                nextPos.x > localPos.x && rightGap <= edgeBuffer ||
+                nextPos.y < localPos.y && topGap   <= edgeBuffer ||
+                nextPos.y > localPos.x && bottomGap<= edgeBuffer)
+            {
+                moving = false;
+            }
+            else
+            {
+                moving = true;
+            }
+        }
+        
         
         /*/* ===== 贴边爬行独立管道 ===== #1#
         if (onEdge)

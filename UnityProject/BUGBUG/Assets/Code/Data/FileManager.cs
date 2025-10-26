@@ -148,7 +148,7 @@ namespace Code.Data
                         if (end == -1) 
                             end = line.Length; // 行尾无空格
 
-                        var foundStamp = line.Substring(start, end - start+1);
+                        var foundStamp = line.Substring(start-1, end - start+1);
                         Debug.Log($"已更新: {foundStamp}");
                         if (foundStamp.IndexOf(fixedStamp, StringComparison.Ordinal) >= 0) // 完全相等即成功
                         {

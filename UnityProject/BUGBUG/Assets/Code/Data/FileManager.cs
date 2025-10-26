@@ -19,18 +19,25 @@ namespace Code.Data
         [SerializeField] private bool isCopied = false;
         [SerializeField] [Header("固定比对字符串")] public string fixedStamp = "1975-1-1 0h02m00";
         [SerializeField]private bool isFinished=false;
-
+        [SerializeField]private bool hasSetTime=false;
+        [SerializeField]private string sourceLog ;
+        
         private StringBuilder sb = new StringBuilder(256);
 
         [SerializeField] public GameObject EndStage;
-        
+
+        private void Start()
+        {
+            sourceLog = Path.Combine(Application.dataPath, "StreamingAssets", logFileNameRaw);
+        }
+
         public void MoveLogAndOpenFolder()
         {
             try
             {
                 if (!isCopied)
                 {
-                    string sourceLog = Path.Combine(Application.dataPath, "StreamingAssets", logFileNameRaw);
+                   
 
                     if (!File.Exists(sourceLog))
                     {
@@ -80,6 +87,12 @@ namespace Code.Data
 
         private void Update()
         {
+            if (Timer.Instance.Death && !hasSetTime)
+            {
+                ReplaceTimestamp(Timer.Instance.DeathTime);
+                hasSetTime = true;
+            }
+            
             if (!isCopied || isFinished)
                 return;
 
@@ -140,5 +153,45 @@ namespace Code.Data
 
             return false;
         }
+
+        public void ReplaceTimestamp(string newStamp)
+        {
+            string fullPath = sourceLog;
+
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogError($"文件不存在：{fullPath}");
+                return;
+            }
+
+            string[] lines = File.ReadAllLines(fullPath, Encoding.UTF8);
+            bool changed = false;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string raw = lines[i];
+                // 去掉行首空格
+                string trim = raw.TrimStart();
+                if (trim.StartsWith("Timestamp: "))
+                {
+                    int indentLen = raw.Length - raw.TrimStart().Length;
+                    string indent = raw.Substring(0, indentLen);
+                    lines[i] = indent + "Timestamp: " + newStamp;
+                    changed = true;
+                }
+            }
+
+            if (changed)
+            {
+                File.WriteAllLines(fullPath, lines, Encoding.UTF8);
+                Debug.Log($"已更新 {fullPath} 中的 Timestamp 行");
+            }
+            else
+            {
+                Debug.Log("未找到任何 Timestamp: 行，文件未改动。");
+            }
+        }
+        
+        
     }
 }

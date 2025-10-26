@@ -14,8 +14,9 @@ namespace Code.Data
         public System.DateTime DateTimeCur;
 
         public float TimeBorder = 60; 
-        public float DeathBorder = 60; 
-
+        public float DeathBorder = 60;
+        public string DeathTime;
+        
         [SerializeField]
         private TextMeshProUGUI TimerText;
         
@@ -31,7 +32,7 @@ namespace Code.Data
         {
             RealTimePassed += Time.deltaTime;
             DateTimeCur = DateTimeCur.AddSeconds(Time.deltaTime);
-            TimerText.text = DateTimeCur.ToString("yy-MM-dd HH:mm:ss");
+            TimerText.text = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");
             
             if (RealTimePassed > TimeBorder &&!Y2KStage)
             {
@@ -44,8 +45,9 @@ namespace Code.Data
             }
             else if (RealTimePassed > (TimeBorder +DeathBorder) && !Death)
             {
-                BugChase.Instance.Death();
                 Death = true;
+                DeathTime = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");
+                BugChase.Instance.Death();
             }
             
             

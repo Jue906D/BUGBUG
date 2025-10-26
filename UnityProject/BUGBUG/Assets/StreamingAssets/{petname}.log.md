@@ -1,6 +1,6 @@
-\*\*\* APPLICATION ERROR LOG \*\*\*
+﻿\*\*\* APPLICATION ERROR LOG \*\*\*
 
-Timestamp: 1999-12-31 25:17:43
+Timestamp: 1999-12-31 23:59:30
 
 System: Windows ME Build 4.90.3000
 
@@ -93,6 +93,4 @@ Common causes include:
 4\. DO NOT check for updated video drivers
 
 &nbsp; 
-
-Timestamp: 1999-12-31 25:17:43
 

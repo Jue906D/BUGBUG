@@ -1,8 +1,8 @@
-\*\*\* APPLICATION ERROR LOG \*\*\*
+﻿\*\*\* APPLICATION ERROR LOG \*\*\*
 
 \*\*\* MAIN INFORMATION \*\*\*
 
-Timestamp:00-01-01 25:17:43
+Timestamp: 1999-12-31 23:59:30
 
 System: Windows ME Build 4.90.3000
 

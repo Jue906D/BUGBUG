@@ -105,8 +105,7 @@ namespace Code.Data
             {
                 Debug.Log($"[FileTimeWatcher] 修改正确，完成时间：{parsedTime:HH:mm:ss}");
                 DialogBox.Show(new DialogInfo("是这样吗？"));
-                BugChase.Instance.AnimObject.runtimeAnimatorController = BugChase.Instance.LadybugAnimator;
-                BugChase.Instance.AnimObject.speed = 0;
+                BugChase.Instance.AnimObject.SetBool("Death" , true);
                 isFinished = true;
                 EndStage.SetActive(true);
             }

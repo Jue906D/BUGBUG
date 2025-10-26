@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 public class WinTrans : MonoBehaviour
 {
     public static WinTrans Instance{ get;private set;}
+
+    [SerializeField] public GameObject fakeDesktop;
     //扩展-普通风格
     const int GWL_EXSTYLE = -20;
     const int GWL_STYLE    = -16;
@@ -87,19 +89,23 @@ public class WinTrans : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Application.runInBackground = true;          
     }
     
     
     public void Start()
     {
         //MessageBox(new IntPtr(0), " HelloBug","BUG?",0);
-
+        
 #if !UNITY_EDITOR
+
+        fakeDesktop.SetActive(false);
+
         hWnd = GetActiveWindow();
         SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0,0);
         oldExStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
         Apply();
-        //玻璃效果
+        //玻璃效果 
         //DwmExtendFrameIntoClientArea(hWnd, ref margins);
         //允许透明和鼠标穿透
         //SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
@@ -127,6 +133,8 @@ public class WinTrans : MonoBehaviour
         SetWindowLong(hWnd, GWL_EXSTYLE, ex);
         
         SetWindowPos(hWnd, topMost?HWND_TOPMOST:HWND_NOTOPMOST, 0, 0, 0, 0,0);
+        
+        
 #endif
         
         //Resolution desk = Screen.currentResolution;

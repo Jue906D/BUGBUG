@@ -19,7 +19,8 @@ namespace Code.Data
         
         [SerializeField]
         private TextMeshProUGUI TimerText;
-        
+
+        public bool GameStart;
         public bool Y2KStage;
         public bool Y2KTip;
         public bool Death;
@@ -30,6 +31,9 @@ namespace Code.Data
 
         void Update()
         {
+            if(!GameStart)
+                    return;
+            
             RealTimePassed += Time.deltaTime;
             DateTimeCur = DateTimeCur.AddSeconds(Time.deltaTime);
             TimerText.text = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");

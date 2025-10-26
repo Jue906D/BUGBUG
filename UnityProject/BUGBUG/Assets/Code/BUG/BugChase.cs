@@ -87,6 +87,7 @@ public class BugChase : SingletonMonoBehaviour<BugChase>
 
     void Start()
     {
+        Timer.Instance.GameStart = true;
         startTime = Time.time + startDelay;
         nameTMP.text = BugName;
     }

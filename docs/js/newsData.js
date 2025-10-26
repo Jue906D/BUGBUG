@@ -39,7 +39,7 @@ const newsList = [
   { title: "世纪之交的危机——千年虫", url: "route01post00.html", secret: "兑", tag: "热", date: "1999-12-09" },
   { title: "不明飞行物现象", url: "404.html", date: "1999-12-10" },
   { title: "登陆火星", url: "404.html", date: "1999-12-12" },
-  { title: "后浪谈“后浪”-网瘾青年的网络世界", url: "route01post05.html", date: "1999-12-14" },//何后浪专访
+  { title: "后浪谈“后浪”-网瘾青年的网络世界", url: "route01post05.html", tag: "火", date: "1999-12-14" },//何后浪专访
   { title: "《关于对全部电子设备实施年度集中销毁的公示》", url: "404.html", date: "1999-12-16" },
   { title: "张千年先生逝世：享年38岁", url: "route01post02.html", secret: "坤", tag: "热",date: "1999-12-17" },
   { title: "火星上可能存在智慧生命", url: "404.html", date: "1999-12-20" },

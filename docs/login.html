@@ -77,8 +77,8 @@
         <!-- 登录逻辑 -->
         <script>
           // ======= 预设的正确用户名与密码 =======
-          const CORRECT_USERNAME = "admin";  // 可修改为你的预设用户名
-          const CORRECT_PASSWORD = "123456"; // 可修改为你的预设密码
+          const CORRECT_USERNAME = "newave_1970";  // 可修改为你的预设用户名
+          const CORRECT_PASSWORD = "299520"; // 可修改为你的预设密码
 
           // ======= 获取页面元素 =======
           const loginButton = document.getElementById("loginButton");
@@ -96,20 +96,20 @@
 
             // 1️⃣ 检查用户名
             if (!username || username !== CORRECT_USERNAME) {
-              loginMessage.textContent = "用户不存在，预设值admin";
+              loginMessage.textContent = "用户不存在";
               return;
             }
 
             // 2️⃣ 检查密码
             if (!password || password !== CORRECT_PASSWORD) {
-              loginMessage.textContent = "密码错误，预设值123456";
+              loginMessage.textContent = "密码错误。密码提示问题：生日时间戳取前6位";
               return;
             }
 
             // 3️⃣ 登录成功，跳转页面
             loginMessage.classList.remove("text-danger");
             loginMessage.classList.add("text-success");
-            loginMessage.textContent = "登录成功，正在跳转……";
+            loginMessage.textContent = "管理员登录成功，正在跳转……";
 
             // 模拟短暂停顿后跳转
             setTimeout(() => {

@@ -138,7 +138,7 @@ namespace Code.Data
                         sb.Append(sr.ReadLine());
                         string line = sb.ToString();
 
-                        int idx = line.IndexOf("Timestamp: ", StringComparison.Ordinal);
+                        int idx = line.IndexOf("Timestamp:", StringComparison.Ordinal);
                         if (idx < 0) continue;
 
                         // 跳过 "Timestamp: " 本身
@@ -150,11 +150,11 @@ namespace Code.Data
 
                         var foundStamp = line.Substring(start-1, end - start+1);
                         Debug.Log($"已更新: {foundStamp}");
-                        if (foundStamp.IndexOf(fixedStamp, StringComparison.Ordinal) >= 0) // 完全相等即成功
+                        if (line.IndexOf(fixedStamp, StringComparison.Ordinal) >= 0)
                         {
                             EndNum = 1;
                             return true;
-                        }else if (foundStamp.IndexOf(fixedStamp2, StringComparison.Ordinal) >= 0)
+                        }else if (line.IndexOf(fixedStamp2, StringComparison.Ordinal) >= 0)
                         {
                             EndNum = 2;
                             return true;
@@ -189,7 +189,7 @@ namespace Code.Data
                 string raw = lines[i];
                 // 去掉行首空格
                 string trim = raw.TrimStart();
-                if (trim.StartsWith("Timestamp: "))
+                if (trim.StartsWith("Timestamp:"))
                 {
                     int indentLen = raw.Length - raw.TrimStart().Length;
                     string indent = raw.Substring(0, indentLen);

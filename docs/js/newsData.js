@@ -46,6 +46,6 @@ const newsList = [
   { title: "大米竟由塑料制！食品安全监管难？", url: "404.html", date: "1999-12-21" },
   { title: "震惊！竟然使用地沟油！", url: "404.html", date: "1999-12-25" },
   { title: "教授遗志：有奖问答！", url: "route01post04.html", secret: "离", tag: "火", date: "1999-12-31" },
-  { title: "千年虫大闹意大利 时钟倒退一百年", url: "route01post06.html", secret: "震", tag: "火", date: "2000-01-10" },
-  { title: "日本金融系统迄今为止共发生21起Y2K问题", url: "route01post07.html", date: "2000-01-13" },
+  { title: "千年虫大闹意大利 时钟倒退一百年", url: "route01post06.html", secret: "震", tag: "火", date: "2000-01-01" },
+  { title: "日本金融系统迄今为止共发生21起Y2K问题", url: "route01post07.html", date: "2000-01-01" },
 ]

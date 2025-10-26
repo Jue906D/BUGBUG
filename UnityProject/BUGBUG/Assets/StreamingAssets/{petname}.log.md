@@ -1,4 +1,4 @@
-﻿\*\*\* APPLICATION ERROR LOG \*\*\*
+\*\*\* APPLICATION ERROR LOG \*\*\*
 
 Timestamp:00-01-01 25:17:43
 

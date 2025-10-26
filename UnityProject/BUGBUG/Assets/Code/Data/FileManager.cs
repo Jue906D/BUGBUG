@@ -17,15 +17,16 @@ namespace Code.Data
         [SerializeField] private string targetPath;
         [SerializeField] private DateTime lastWriteTime;
         [SerializeField] private bool isCopied = false;
-        [SerializeField] [Header("固定比对字符串")] public string fixedStamp = "1975-1-1 0h02m00";
+        [SerializeField] [Header("固定比对字符串 End1")] public string fixedStamp = "1975-1-1 0h02m00";
+        [SerializeField] [Header("固定比对字符串 End2")] public string fixedStamp2 = "suspend(Time)";
         [SerializeField]private bool isFinished=false;
         [SerializeField]private bool hasSetTime=false;
         [SerializeField]private string sourceLog ;
         
         private StringBuilder sb = new StringBuilder(256);
-
-        [SerializeField] public GameObject EndStage;
-
+        public int EndNum = 0;
+        [SerializeField] public GameObject EndStage1;
+        [SerializeField] public GameObject EndStage2;
         private void Start()
         {
             sourceLog = Path.Combine(Application.dataPath, "StreamingAssets", logFileNameRaw);
@@ -104,11 +105,22 @@ namespace Code.Data
             if (TryParseTargetLine(out DateTime parsedTime))
             {
                 Debug.Log($"[FileTimeWatcher] 修改正确，完成时间：{parsedTime:HH:mm:ss}");
+                WinTrans.Instance.TopMost();
                 DialogBox.Show(new DialogInfo("是这样吗？"));
-                BugChase.Instance.AnimObject.runtimeAnimatorController = BugChase.Instance.LadybugAnimator;
-                BugChase.Instance.AnimObject.speed = 0;
+                BugChase.Instance.AnimObject.SetBool("Death" , true);
                 isFinished = true;
-                EndStage.SetActive(true);
+                switch (EndNum)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        EndStage1.SetActive(true);
+                        break;
+                    case 2:
+                        EndStage2.SetActive(true);
+                        break;
+                }
+                
             }
         }
 
@@ -140,6 +152,11 @@ namespace Code.Data
                         Debug.Log($"已更新: {foundStamp}");
                         if (foundStamp.Equals(fixedStamp)) // 完全相等即成功
                         {
+                            EndNum = 1;
+                            return true;
+                        }else if (foundStamp.Equals(fixedStamp2))
+                        {
+                            EndNum = 2;
                             return true;
                         }
                     }

@@ -19,17 +19,22 @@ namespace Code.Data
         
         [SerializeField]
         private TextMeshProUGUI TimerText;
-        
+
+        public bool GameStart;
         public bool Y2KStage;
         public bool Y2KTip;
         public bool Death;
         void Start()
         {
             DateTimeCur = new System.DateTime(1999, 12, 31, 23, 59, 0, System.DateTimeKind.Utc);
+            GameStart = false;
         }
 
         void Update()
         {
+            if(!GameStart)
+                    return;
+            
             RealTimePassed += Time.deltaTime;
             DateTimeCur = DateTimeCur.AddSeconds(Time.deltaTime);
             TimerText.text = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");
@@ -47,7 +52,9 @@ namespace Code.Data
             {
                 Death = true;
                 DeathTime = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");
+                WinTrans.Instance.TopMost();
                 BugChase.Instance.Death();
+                Death = true;
             }
             
             

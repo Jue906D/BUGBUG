@@ -85,7 +85,11 @@ public class WinTrans : MonoBehaviour
     public bool topMost = true;       // 置顶
     private uint   oldExStyle;
     private IntPtr hWnd;
+    
 
+    const uint CR_KEY_BLACK = 0x000000;   // 纯黑
+    private const uint CR_KEY_PINK = 0x00FF00FF;
+    const uint LWA_COLORKEY = 0x00000001;   // ← 关键值
     private void Awake()
     {
         Instance = this;
@@ -122,15 +126,14 @@ public class WinTrans : MonoBehaviour
         if (transparent)  ex |=  WS_EX_LAYERED;
         else              ex &= ~WS_EX_LAYERED;
 
-        if (clickThrough) ex |=  WS_EX_TRANSPARENT;
-        else              ex &= ~WS_EX_TRANSPARENT;
-
         if(glass) 
             DwmExtendFrameIntoClientArea(hWnd, ref doglass);
         else
             DwmExtendFrameIntoClientArea(hWnd, ref noglass);
         
         SetWindowLong(hWnd, GWL_EXSTYLE, ex);
+        
+        SetLayeredWindowAttributes(hWnd, CR_KEY_PINK, 255, LWA_COLORKEY);
         
         SetWindowPos(hWnd, topMost?HWND_TOPMOST:HWND_NOTOPMOST, 0, 0, 0, 0,0);
         
@@ -146,6 +149,12 @@ public class WinTrans : MonoBehaviour
         // 置顶/取消置顶
         //SetWindowPos(hWnd, topMost ? HWND_TOPMOST : HWND_NOTOPMOST,
         //    0, 0, 0, 0, 0x0020 | 0x0001 | 0x0002); // SWP_FRAMECHANGED|NOSIZE|NOMOVE
+    }
+
+    public void TopMost()
+    {
+        topMost = !topMost;
+        Apply();
     }
     
 }

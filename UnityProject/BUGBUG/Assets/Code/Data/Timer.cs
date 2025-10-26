@@ -27,6 +27,7 @@ namespace Code.Data
         void Start()
         {
             DateTimeCur = new System.DateTime(1999, 12, 31, 23, 59, 0, System.DateTimeKind.Utc);
+            GameStart = false;
         }
 
         void Update()
@@ -51,7 +52,9 @@ namespace Code.Data
             {
                 Death = true;
                 DeathTime = DateTimeCur.ToString("yyyy-MM-dd HH:mm:ss");
+                WinTrans.Instance.TopMost();
                 BugChase.Instance.Death();
+                Death = true;
             }
             
             

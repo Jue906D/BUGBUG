@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections;
+using System.Runtime.InteropServices;
 
 namespace Code.Utils
 {
@@ -10,7 +11,7 @@ namespace Code.Utils
     {
         Button btn;
         RectTransform rectTrans;
-
+        private bool inCooldown = false;   // 是否处于冷却中
         void Awake()
         {
             btn = GetComponent<Button>();
@@ -34,6 +35,8 @@ namespace Code.Utils
         }
         void Update()
         {
+            if (inCooldown) return;
+            
             // 当前鼠标屏幕坐标
             Vector2 mouse = Input.mousePosition;
             if (Input.GetKeyDown(KeyCode.Mouse0) || DirectorManager.GetInstance().isClick())
@@ -43,9 +46,20 @@ namespace Code.Utils
                     Debug.Log($"Click at {Input.mousePosition} {GetScreenRect()}");
                     Debug.Log($"Active");
                     btn.onClick.Invoke();
+                    
+                    inCooldown = true;
+                    StartCoroutine(Cooldown(0.3f));// 启动 0.3 s 冷却
                 }
             }
+            
+            
 
+        }
+        
+        private IEnumerator Cooldown(float t)
+        {
+            yield return new WaitForSeconds(t);
+            inCooldown = false;            // 冷却结束，可再次执行
         }
     }
 }

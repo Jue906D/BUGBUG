@@ -1,17 +1,28 @@
-\*\*\* APPLICATION ERROR LOG \*\*\*
+﻿\*\*\* APPLICATION ERROR LOG \*\*\*
 
-Timestamp: 1999-12-31 25:17:43
+\*\*\* MAIN INFORMATION \*\*\*
+
+Timestamp: 1999-12-31 23:59:30
 
 System: Windows ME Build 4.90.3000
 
 Application: MediaPlayer\_Plus v1.5
 
 
+\*\*\* RECOMMANDED ACTIONS \*\*\*
+
+1\. 不·要·重启软件
+
+2\. 浏览 https://jue906d.github.io/BUGBUG/404 获得更多修复信息
+
+3\. 不·要·验证系统是否满足最低要求
+
+4\. 不·要·检查显卡驱动是否有更新
+
 
 ERROR CODE: 0x80004005 - UNEXPECTED\_FAILURE
 
 SEVERITY: HIGH
-
 
 
 \*\*\* ERROR DESCRIPTION \*\*\*
@@ -68,7 +79,7 @@ The program has become unresponsive and must be opened.
 
 Additional information unavailable at:
 
-http://www.noonereply.com/hang\_error.html
+https://jue906d.github.io/BUGBUG/404
 
 
 
@@ -79,20 +90,4 @@ Common causes include:
 \- Driver compatibility issues  
 
 \- Memory allocation failures
-
-&nbsp; 
-
-\*\*\* RECOMMENDED ACTIONS \*\*\*
-
-1\. DO NOT try restarting the application
-
-2\. Visit www.noonereply.com for troubleshooting guides
-
-3\. DO NOT verify system meets minimum requirements
-
-4\. DO NOT check for updated video drivers
-
-&nbsp; 
-
-Timestamp: 1999-12-31 25:17:43
 

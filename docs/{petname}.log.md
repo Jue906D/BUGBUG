@@ -68,7 +68,7 @@ The program has become unresponsive and must be opened.
 
 Additional information unavailable at:
 
-http://www.noonereply.com/hang\_error.html
+https://jue906d.github.io/BUGBUG/404
 
 
 
@@ -86,13 +86,11 @@ Common causes include:
 
 1\. DO NOT try restarting the application
 
-2\. Visit www.noonereply.com for troubleshooting guides
+2\. Visit https://jue906d.github.io/BUGBUG/404 for troubleshooting guides
 
 3\. DO NOT verify system meets minimum requirements
 
 4\. DO NOT check for updated video drivers
 
 &nbsp; 
-
-Timestamp: 00-01-01 25:17:43
 

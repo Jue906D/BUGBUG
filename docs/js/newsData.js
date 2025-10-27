@@ -1,50 +1,30 @@
-// === 新闻数据 ===
-// const newsList = [
-//   { title: "世纪之交的危机——千年虫", url: "route01post00.html", tag: "火", date: "1999-12-09" },
-//   { title: "张千年：有信心击退“千年虫”", url: "route01post01.html", date: "1999-12-08" },
-//   { title: "张千年先生逝世：享年38岁", url: "route01post02.html", tag: "热", date: "1999-12-07" },
-//   { title: "不明飞行物现象", url: "route01post01.html", date: "1999-12-10" },
-//   { title: "成龙\"绯闻\"事件", url: "route01post02.html", tag: "热", date: "1999-11-19" },
-//   { title: "登陆火星", url: "404.html", date: "1999-12-14" },
-//   { title: "第三届国际足联女子世界杯", url: "404.html", date: "1999-6-18" },
-//   { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "route01post08.html", secret: "秘密字", tag: "火", date: "1997-5-6" },
-//   { title: "张千年教授的电脑课堂-揭秘时间戳", url: "route01post03.html", date: "1999-07-19" },
-//   { title: "《关于对全部电子设备实施年度集中销毁的公示》", url: "404.html", secret: "秘密字", tag: "火", date: "****-**-**" },
-//   { title: "江主席出访亚太三国", url: "404.html", date: "1999-09-03" },
-//   { title: "女子足球队获亚军，惜败美国队", url: "route01post06.html", date: "1999-7-10" },
-//   { title: "\"千年虫\"卷土重来？揭秘2038年虫", url: "404.html", secret: "秘密字", tag: "火", date: "2038-10-14" },
-//   { title: "七十二小时网络生存测试", url: "404.html", date: "1999-09-04" },
-//   { title: "世纪末的日全食", url: "404.html", date: "1999-08-09" },
-//   { title: "牢记初心，不忘梦想——“中国图灵”张千年教授专访", url: "route01post09.html", date: "1999-09-21" },
-//   { title: "\"万年虫\"再度示警，专家称：祸害遗万年", url: "route01post07.html", secret: "秘密字", tag: "火", date: "11451-17-36" },
-//   { title: "我国发射载人航天飞船", url: "404.html", date: "1999-11-21" },
-//   { title: "新世纪的首次挑战：2025年虫", url: "route01post05.html", secret: "秘密字", tag: "火", date: "2024-7-29" },
-//   { title: "最后一周，千万奖金，等你来拿！", url: "route01post04.html", tag: "热", date: "1999-12-18" },
-//   { title: "火星上可能存在智慧生命", url: "404.html", date: "1999-12-18" },
-//   { title: "大米竟由塑料制！食品安全监管难？", url: "404.html", tag: "热", date: "1999-12-18" },
-//   { title: "震惊！竟然使用地沟油！", url: "404.html", tag: "热", date: "1999-12-18" }
-// ];
-
 
 const newsList = [
-  { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "route01post08.html", secret: "巽", tag: "火", date: "1997-05-06" },
+  { title: "二进制的祖宗：从《易经》和阴阳调和说起", url: "route01post08.html", secret: "巽3☴", tag: "火", date: "1997-05-06" },
+  { title: "七十二小时网络生存测试", url: "404.html", date: "1999-05-22" },
   { title: "第三届国际足联女子世界杯", url: "404.html", date: "1999-06-18" },
-  { title: "张千年教授的电脑课堂-揭秘时间戳", url: "route01post03.html", secret: "坎", tag: "热", date: "1999-07-19" },
-  { title: "女子足球队获亚军，惜败美国队", url: "404.html", date: "1999-07-10" },
+  //恐慌
+  { title: "世纪之交的危机——千年虫", url: "route01post00.html", secret: "兑6☱", tag: "热", date: "1999-07-22" },
+  { title: "千年虫或导致断电、交通瘫痪、医疗设备离线——基础设施警钟响起", url: "404.html", date: "1999-07-24" },
   { title: "世纪末的日全食", url: "404.html", date: "1999-08-09" },
-  { title: "七十二小时网络生存测试", url: "404.html", date: "1999-09-04" },
-  { title: "牢记初心，不忘梦想——“中国图灵”张千年教授专访", url: "route01post09.html", secret: "乾", tag: "火", date: "1999-09-21" },
+  { title: "千年虫恐慌蔓延：居民抢购电池、饮用水、自备现金警惕系统崩溃", url: "404.html", date: "1999-08-12" },
+  { title: "银行业警报：千年虫或引发系统性金融危机", url: "route01post06.html", secret: "震4☳", tag: "火", date: "1999-08-18" },
+  //安抚
+  { title: "张千年：有信心击退“千年虫”", url: "route01post01.html", secret: "艮1☶", tag: "热", date: "1999-08-19" }, 
+
+  { title: "张千年教授的电脑课堂-揭秘时间戳", url: "route01post03.html", secret: "坎2☵", tag: "热", date: "1999-08-21" },
+  { title: "牢记初心，不忘梦想-“中国图灵”张千年教授专访", url: "route01post09.html", secret: "乾7☰", tag: "火", date: "1999-08-31" },
+//计划招募
+  { title: "有奖问答，千万奖金，等你来拿！", url: "route01post04.html", secret: "离5☲", tag: "火", date: "1999-11-10" },//修改成生前活动
+  { title: "【论坛】[user:WY_1968]:这么大方，地球人都知道肯定有阴谋！", url: "route01post10.html", tag: "火", date: "1999-11-10" },//新增论坛-后浪网真大方
   { title: "我国发射载人航天飞船", url: "404.html", date: "1999-11-21" },
-  { title: "张千年：有信心击退“千年虫”", url: "route01post01.html", secret: "艮", tag: "热", date: "1999-12-05" }, 
-  { title: "张千年先生逝世：享年38岁", url: "route01post02.html", secret: "坤", tag: "热",date: "1999-12-07" },
-  { title: "世纪之交的危机——千年虫", url: "route01post00.html", secret: "兑", tag: "热", date: "1999-12-09" },
   { title: "不明飞行物现象", url: "404.html", date: "1999-12-10" },
-  { title: "登陆火星", url: "404.html", date: "1999-12-14" },
-  { title: "《关于对全部电子设备实施年度集中销毁的公示》", url: "404.html", date: "1999-12-12" },
-  { title: "教授遗志：有奖问答！", url: "route01post04.html", secret: "离", tag: "火", date: "1999-12-18" },
-  { title: "火星上可能存在智慧生命", url: "404.html", date: "1999-12-18" },
-  { title: "大米竟由塑料制！食品安全监管难？", url: "404.html", date: "1999-12-18" },
-  { title: "震惊！竟然使用地沟油！", url: "404.html", date: "1999-12-18" },
-  { title: "千年虫大闹意大利 时钟倒退一百年", url: "route01post06.html", secret: "震", tag: "火", date: "2000-01-10" },
-  { title: "日本金融系统迄今为止共发生21起Y2K问题", url: "route01post07.html", date: "2000-01-13" },
+  { title: "后浪谈“后浪”-网瘾青年的网络世界", url: "route01post05.html", tag: "火", date: "1999-12-14" },//何后浪专访
+  //期间遗书
+  { title: "火星上可能存在智慧生命", url: "404.html", date: "1999-12-20" },
+  { title: "大米竟由塑料制！食品安全监管难？", url: "404.html", date: "1999-12-21" },
+  { title: "震惊！竟然使用地沟油！", url: "404.html", date: "1999-12-25" },
+  { title: "张千年先生逝世：享年38岁", url: "route01post02.html", secret: "坤0☷", tag: "热",date: "1999-12-31" },
+//张千年死亡
+  { title: "日本金融系统迄今为止共发生21起Y2K问题", url: "route01post07.html", date: "2000-01-01" },
 ]

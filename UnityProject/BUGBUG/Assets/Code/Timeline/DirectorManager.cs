@@ -18,6 +18,12 @@ public class DirectorManager : MonoBehaviour
     private const int VK_RBUTTON = 0x02;   // 右键
     private const int MIN_VK = 0x08;   // 退格
     private const int MAX_VK = 0xFE;   // 最后一个有效值
+
+    public bool isClick()
+    {
+        return  (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0 ||
+                (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0;
+    }
     
     public TextMeshProUGUI cntText;
     void Awake()

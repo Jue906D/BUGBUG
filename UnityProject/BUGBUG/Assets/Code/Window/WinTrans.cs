@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 public class WinTrans : MonoBehaviour
 {
     public static WinTrans Instance{ get;private set;}
+
+    [SerializeField] public GameObject fakeDesktop;
     //扩展-普通风格
     const int GWL_EXSTYLE = -20;
     const int GWL_STYLE    = -16;
@@ -83,23 +85,31 @@ public class WinTrans : MonoBehaviour
     public bool topMost = true;       // 置顶
     private uint   oldExStyle;
     private IntPtr hWnd;
+    
 
+    const uint CR_KEY_BLACK = 0x000000;   // 纯黑
+    private const uint CR_KEY_PINK = 0x00FF00FF;
+    const uint LWA_COLORKEY = 0x00000001;   // ← 关键值
     private void Awake()
     {
         Instance = this;
+        Application.runInBackground = true;          
     }
     
     
     public void Start()
     {
         //MessageBox(new IntPtr(0), " HelloBug","BUG?",0);
-
+        
 #if !UNITY_EDITOR
+
+        fakeDesktop.SetActive(false);
+
         hWnd = GetActiveWindow();
         SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0,0);
         oldExStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
         Apply();
-        //玻璃效果
+        //玻璃效果 
         //DwmExtendFrameIntoClientArea(hWnd, ref margins);
         //允许透明和鼠标穿透
         //SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
@@ -116,9 +126,6 @@ public class WinTrans : MonoBehaviour
         if (transparent)  ex |=  WS_EX_LAYERED;
         else              ex &= ~WS_EX_LAYERED;
 
-        if (clickThrough) ex |=  WS_EX_TRANSPARENT;
-        else              ex &= ~WS_EX_TRANSPARENT;
-
         if(glass) 
             DwmExtendFrameIntoClientArea(hWnd, ref doglass);
         else
@@ -126,7 +133,11 @@ public class WinTrans : MonoBehaviour
         
         SetWindowLong(hWnd, GWL_EXSTYLE, ex);
         
+        SetLayeredWindowAttributes(hWnd, CR_KEY_PINK, 255, LWA_COLORKEY);
+        
         SetWindowPos(hWnd, topMost?HWND_TOPMOST:HWND_NOTOPMOST, 0, 0, 0, 0,0);
+        
+        
 #endif
         
         //Resolution desk = Screen.currentResolution;
@@ -138,6 +149,12 @@ public class WinTrans : MonoBehaviour
         // 置顶/取消置顶
         //SetWindowPos(hWnd, topMost ? HWND_TOPMOST : HWND_NOTOPMOST,
         //    0, 0, 0, 0, 0x0020 | 0x0001 | 0x0002); // SWP_FRAMECHANGED|NOSIZE|NOMOVE
+    }
+
+    public void TopMost()
+    {
+        topMost = !topMost;
+        Apply();
     }
     
 }

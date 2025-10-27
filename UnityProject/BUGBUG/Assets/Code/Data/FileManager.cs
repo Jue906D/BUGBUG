@@ -17,20 +17,28 @@ namespace Code.Data
         [SerializeField] private string targetPath;
         [SerializeField] private DateTime lastWriteTime;
         [SerializeField] private bool isCopied = false;
-        [SerializeField] [Header("固定比对字符串")] public string fixedStamp = "1975-1-1 0h02m00";
+        [SerializeField] [Header("固定比对字符串 End1")] public string fixedStamp = "1975-1-1 0h02m00";
+        [SerializeField] [Header("固定比对字符串 End2")] public string fixedStamp2 = "suspend(Time)";
         [SerializeField]private bool isFinished=false;
-
-        private StringBuilder sb = new StringBuilder(256);
-
-        [SerializeField] public GameObject EndStage;
+        [SerializeField]private bool hasSetTime=false;
+        [SerializeField]private string sourceLog ;
         
+        private StringBuilder sb = new StringBuilder(256);
+        public int EndNum = 0;
+        [SerializeField] public GameObject EndStage1;
+        [SerializeField] public GameObject EndStage2;
+        private void Start()
+        {
+            sourceLog = Path.Combine(Application.dataPath, "StreamingAssets", logFileNameRaw);
+        }
+
         public void MoveLogAndOpenFolder()
         {
             try
             {
                 if (!isCopied)
                 {
-                    string sourceLog = Path.Combine(Application.dataPath, "StreamingAssets", logFileNameRaw);
+                   
 
                     if (!File.Exists(sourceLog))
                     {
@@ -80,6 +88,12 @@ namespace Code.Data
 
         private void Update()
         {
+            if (Timer.Instance.Death && !hasSetTime)
+            {
+                ReplaceTimestamp(Timer.Instance.DeathTime);
+                hasSetTime = true;
+            }
+            
             if (!isCopied || isFinished)
                 return;
 
@@ -91,11 +105,22 @@ namespace Code.Data
             if (TryParseTargetLine(out DateTime parsedTime))
             {
                 Debug.Log($"[FileTimeWatcher] 修改正确，完成时间：{parsedTime:HH:mm:ss}");
+                //WinTrans.Instance.TopMost();
                 DialogBox.Show(new DialogInfo("是这样吗？"));
-                BugChase.Instance.AnimObject.runtimeAnimatorController = BugChase.Instance.LadybugAnimator;
-                BugChase.Instance.AnimObject.speed = 0;
+                BugChase.Instance.AnimObject.SetBool("Death" , true);
                 isFinished = true;
-                EndStage.SetActive(true);
+                switch (EndNum)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        EndStage1.SetActive(true);
+                        break;
+                    case 2:
+                        EndStage2.SetActive(true);
+                        break;
+                }
+                
             }
         }
 
@@ -113,7 +138,7 @@ namespace Code.Data
                         sb.Append(sr.ReadLine());
                         string line = sb.ToString();
 
-                        int idx = line.IndexOf("Timestamp: ", StringComparison.Ordinal);
+                        int idx = line.IndexOf("Timestamp:", StringComparison.Ordinal);
                         if (idx < 0) continue;
 
                         // 跳过 "Timestamp: " 本身
@@ -123,10 +148,15 @@ namespace Code.Data
                         if (end == -1) 
                             end = line.Length; // 行尾无空格
 
-                        var foundStamp = line.Substring(start, end - start+1);
+                        var foundStamp = line.Substring(start-1, end - start+1);
                         Debug.Log($"已更新: {foundStamp}");
-                        if (foundStamp.Equals(fixedStamp)) // 完全相等即成功
+                        if (line.IndexOf(fixedStamp, StringComparison.Ordinal) >= 0)
                         {
+                            EndNum = 1;
+                            return true;
+                        }else if (line.IndexOf(fixedStamp2, StringComparison.Ordinal) >= 0)
+                        {
+                            EndNum = 2;
                             return true;
                         }
                     }
@@ -140,5 +170,45 @@ namespace Code.Data
 
             return false;
         }
+
+        public void ReplaceTimestamp(string newStamp)
+        {
+            string fullPath = sourceLog;
+
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogError($"文件不存在：{fullPath}");
+                return;
+            }
+
+            string[] lines = File.ReadAllLines(fullPath, Encoding.UTF8);
+            bool changed = false;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string raw = lines[i];
+                // 去掉行首空格
+                string trim = raw.TrimStart();
+                if (trim.StartsWith("Timestamp:"))
+                {
+                    int indentLen = raw.Length - raw.TrimStart().Length;
+                    string indent = raw.Substring(0, indentLen);
+                    lines[i] = indent + "Timestamp: " + newStamp;
+                    changed = true;
+                }
+            }
+
+            if (changed)
+            {
+                File.WriteAllLines(fullPath, lines, Encoding.UTF8);
+                Debug.Log($"已更新 {fullPath} 中的 Timestamp 行");
+            }
+            else
+            {
+                Debug.Log("未找到任何 Timestamp: 行，文件未改动。");
+            }
+        }
+        
+        
     }
 }
